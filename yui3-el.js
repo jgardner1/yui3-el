@@ -1,3 +1,4 @@
+var EL;
 YUI().use('node', 'event', function(Y) {
     var _init_attrs = function(e, attrs) {
         for (var attr in attrs) {
@@ -23,19 +24,18 @@ YUI().use('node', 'event', function(Y) {
     };
 
     var _append = function(e, child) {
-            if (child isinstance Array) {
-                for (var i=0; i<child.length; i++) {
-                    _append(e, child[i]);
-                }
-            } else {
-                return e.appendChild(child);
+        if (child instanceof Array) {
+            for (var i=0; i<child.length; i++) {
+                _append(e, child[i]);
             }
+        } else {
+            return e.appendChild(child);
         }
     };
 
-    el = function(type, attrs) {
+    EL = function(type, attrs) {
         var e = Y.Node.create('<'+type+'>');
-        _init_attr(e, attrs);
+        _init_attrs(e, attrs);
 
         for (var i=2; i<arguments.length; i++) {
             _append(e, arguments[i]);
@@ -46,7 +46,7 @@ YUI().use('node', 'event', function(Y) {
 
     var _named_el = function(type) {
         return function(attrs) {
-            var e = el(type, attrs);
+            var e = EL(type, attrs);
             
             for (var i=1; i<arguments.length; i++) {
                 _append(e, arguments[i]);
@@ -56,8 +56,9 @@ YUI().use('node', 'event', function(Y) {
         };
     };      
             
-    _tags = "html head title base link meta style script noscript body section nav article aside h1 h2 h3 h4 h5 h6 hgroup header footer address p hr pre blockquote ol ul li dl dt dd figure figcaption div a em strong small s cite q dfn abbr time code var samp kbd sub sup i b u mark ruby rt rp bdi bdo span br wbr ins del img iframe embed object param video audio source track canvas map area table caption colgroup col tbody thead tfoot tr td th form fieldset legend label input button select datalist optgroup option textarea keygen output progress meter details summary command menu".split(' ');
-    for (var i=0; i<tags.length; i++) {
-        el[_tags[i]] = _named_el(_tags[i]);
+    _tags = "HTML HEAD TITLE BASE LINK META STYLE SCRIPT NOSCRIPT BODY SECTION NAV ARTICLE ASIDE H1 H2 H3 H4 H5 H6 HGROUP HEADER FOOTER ADDRESS P HR PRE BLOCKQUOTE OL UL LI DL DT DD FIGURE FIGCAPTION DIV A EM STRONG SMALL S CITE Q DFN ABBR TIME CODE VAR SAMP KBD SUB SUP I B U MARK RUBY RT RP BDI BDO SPAN BR WBR INS DEL IMG IFRAME EMBED OBJECT PARAM VIDEO AUDIO SOURCE TRACK CANVAS MAP AREA TABLE CAPTION COLGROUP COL TBODY THEAD TFOOT TR TD TH FORM FIELDSET LEGEND LABEL INPUT BUTTON SELECT DATALIST OPTGROUP OPTION TEXTAREA KEYGEN OUTPUT PROGRESS METER DETAILS SUMMARY COMMAND MENU".split(' ');
+    for (var i=0; i<_tags.length; i++) {
+        window[_tags[i]] = _named_el(_tags[i]);
     }
+
 });

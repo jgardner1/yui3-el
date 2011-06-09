@@ -1,6 +1,7 @@
 var EL;
 YUI().use('node', 'event', function(Y) {
     var _init_attrs = function(e, attrs) {
+        var events, style, s;
         for (var attr in attrs) {
             if (attr == 'on') {
                 events = attrs[attr];
@@ -17,6 +18,16 @@ YUI().use('node', 'event', function(Y) {
                 for (var event in events) {
                     e.before(event, events[event]);
                 }
+            } else if (attr == 'style') {
+                style = attrs[style];
+                if (typeof style == 'string' || style instanceof String) {
+                    e.setAttribute(attr, style);
+                } else {
+                    for (var s in style) {
+                        e.setStyle(s, style[s]);
+                    }
+                }
+
             } else {
                 e.setAttribute(attr, attrs[attr]);
             }

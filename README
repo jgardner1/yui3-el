@@ -4,8 +4,156 @@ This makes creating HTML much easier.
 
 Usage:
 
-* Include yui3-min in your page.
-* Include the yui3-el.js code into your page. 
+* Add yui3-el to your project using git submodule.
+
+* Include yui3-min in your page:
+
+<script type="text/javascript" src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js"></script>
+
+* Include the yui3-el.js code into your page. Remember where you put the
+yui3-el.js file.
+
+<script type="text/javascript" src="/js/yui3-el/yui3-el.js"></script>
+
 * Now, all the top-level elements are available.
 
-See the code to see which elements are available.
+Functions:
+
+EL(tag, attrs, [content...]) or 
+<TAG>(attrs, [content,...])
+* Returns a new YUI 3 Node as specified.
+* tag: The tag name for the new element.
+* attrs: The element attributes, with exceptions for 'on', 'after', and
+    'before'. 'style' also has a special behavior. (See below)
+* content: A list of lists of lists of content for YUI 3 Node. These will be
+    flattened and then appended one after the other.
+
+'on', 'before', and 'after' attributes: For these, specify an object. The
+attributes will be event names, and the values will be functions to connect to
+those events. For instance:
+
+    BUTTON({
+            on:{
+                click:function(event) {
+                    alert("You clicked me!");
+                }
+            }
+        },
+        "Click Me!");
+
+'style' attribute: if you specify style, you can either pass in a string, and then it
+will setAttribute for the style; or you can pass in an object, and then it
+will use setStyle for each of the attributes of that object.
+
+    DIV({style:'display:none;'})
+    DIV({style:{display:'none'}})
+
+Supported tags:
+    * A
+    * ABBR
+    * ADDRESS
+    * AREA
+    * ARTICLE
+    * ASIDE
+    * AUDIO
+    * B
+    * BASE
+    * BDI
+    * BDO
+    * BLOCKQUOTE
+    * BODY
+    * BR
+    * BUTTON
+    * CANVAS
+    * CAPTION
+    * CITE
+    * CODE
+    * COL
+    * COLGROUP
+    * COMMAND
+    * DATALIST
+    * DD
+    * DEL
+    * DETAILS
+    * DFN
+    * DIV
+    * DL
+    * DT
+    * EM
+    * EMBED
+    * FIELDSET
+    * FIGCAPTION
+    * FIGURE
+    * FOOTER
+    * FORM
+    * H1
+    * H2
+    * H3
+    * H4
+    * H5
+    * H6
+    * HEAD
+    * HEADER
+    * HGROUP
+    * HR
+    * HTML
+    * I
+    * IFRAME
+    * IMG
+    * INPUT
+    * INS
+    * KBD
+    * KEYGEN
+    * LABEL
+    * LEGEND
+    * LI
+    * LINK
+    * MAP
+    * MARK
+    * MENU
+    * META
+    * METER
+    * NAV
+    * NOSCRIPT
+    * OBJECT
+    * OL
+    * OPTGROUP
+    * OPTION
+    * OUTPUT
+    * P
+    * PARAM
+    * PRE
+    * PROGRESS
+    * Q
+    * RP
+    * RT
+    * RUBY
+    * S
+    * SAMP
+    * SCRIPT
+    * SECTION
+    * SELECT
+    * SMALL
+    * SOURCE
+    * SPAN
+    * STRONG
+    * STYLE
+    * SUB
+    * SUMMARY
+    * SUP
+    * TABLE
+    * TBODY
+    * TD
+    * TEXTAREA
+    * TFOOT
+    * TH
+    * THEAD
+    * TIME
+    * TITLE
+    * TR
+    * TRACK
+    * U
+    * UL
+    * VAR
+    * VIDEO
+    * WBR

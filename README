@@ -1,0 +1,11 @@
+yui3-el provides common HTML element initialization functions.
+
+This makes creating HTML much easier.
+
+Usage:
+
+* Include yui3-min in your page.
+* Include the yui3-el.js code into your page. 
+* Now, all the top-level elements are available.
+
+See the code to see which elements are available.
